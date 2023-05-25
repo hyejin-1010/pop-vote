@@ -13,6 +13,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/complete/:voteId',
     component: () => import('../views/Complete.vue'),
   },
+  {
+    path: '/ranking',
+    component: () => import('../views/Ranking.vue'),
+  },
 ];
 
 export default createRouter({

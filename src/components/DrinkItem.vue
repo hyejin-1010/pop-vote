@@ -12,7 +12,7 @@
         {{ drink.description }}
       </div>
 
-      <div :class="isEven ? 'text-right' : 'text-left'" class="mt-2">
+      <div v-if="isVote" :class="isEven ? 'text-right' : 'text-left'" class="mt-2">
         <button class="px-6 py-2 text-white bg-blue-600 rounded jalnan hover:bg-blue-800"
           @click="emit('vote')">투표</button>
       </div>
@@ -28,6 +28,7 @@ import Drink from '@/types/drink.type';
 interface Props {
   drink: Drink;
   isEven: boolean;
+  isVote: boolean;
 }
 
 const props = defineProps<Props>();
