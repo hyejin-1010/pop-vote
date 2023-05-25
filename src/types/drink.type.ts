@@ -1,4 +1,4 @@
-export default interface {
+export default interface Drink {
   drink_id: string;
   name: string;
   vote_count: number;
