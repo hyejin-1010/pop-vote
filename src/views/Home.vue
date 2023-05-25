@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="text-2xl">
     HOME
   </div>
 </template>
