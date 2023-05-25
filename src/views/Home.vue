@@ -1,6 +1,17 @@
 <template>
-  <div class="text-2xl">
-    HOME
+  <div class="flex flex-col h-full">
+    <div class="text-6xl font-bold text-center jalnan">
+      술 인기 투표
+    </div>
+
+    <div class="w-[80%] h-60 bg-gray-300 m-auto my-14 text-center flex flex-col justify-center flex-1">
+      temp image
+    </div>
+
+    <div class="text-center">
+      <button class="bg-blue-600 rounded-full w-[80%] text-white font-bold jalnan py-4">투표하기</button>
+      <button class="bg-blue-900 rounded-full w-[80%] text-white font-bold jalnan py-4 mt-4">순위보기</button>
+    </div>
   </div>
 </template>
 
@@ -9,5 +20,4 @@
 </script>
 
 <style scoped>
-
 </style>
