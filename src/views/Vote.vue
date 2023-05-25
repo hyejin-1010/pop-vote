@@ -1,11 +1,13 @@
 <template>
   <div class="flex flex-col max-h-full">
     <div class="text-6xl font-bold text-center jalnan">
+      <span class="text-blue-600 cursor-pointer hover:text-blue-800" 
+        @click="back">⬅</span>
       술 인기 투표
     </div>
 
     <div class="flex-1 h-full overflow-y-auto">
-      <DrinkItem v-for="(drink, index) in drinks"
+      <DrinkItem v-for="(drink, index) in drinks" :isVote="true"
         :drink="drink" :isEven="index % 2 == 0"
         @vote="onClickVoteBtn(drink)" />
     </div>
@@ -52,6 +54,9 @@ function onDoneVote() {
   router.push(`/complete/${voteDrink.value.drink_id}`);
 }
 
+function back() {
+  router.go(-1);
+}
 </script>
 
 <style scoped>
