@@ -13,7 +13,8 @@
       </div>
 
       <div :class="isEven ? 'text-right' : 'text-left'" class="mt-2">
-        <button class="px-6 py-2 text-white bg-blue-600 rounded jalnan hover:bg-blue-800">투표</button>
+        <button class="px-6 py-2 text-white bg-blue-600 rounded jalnan hover:bg-blue-800"
+          @click="emit('vote')">투표</button>
       </div>
       
     </div>
@@ -30,7 +31,7 @@ interface Props {
 }
 
 const props = defineProps<Props>();
-
+const emit = defineEmits(['vote']);
 </script>
 
 <style lang="scss" scoped>

@@ -6,17 +6,27 @@
 
     <div class="flex-1 h-full overflow-y-auto">
       <DrinkItem v-for="(drink, index) in drinks"
-        :drink="drink" :isEven="index % 2 == 0" />
+        :drink="drink" :isEven="index % 2 == 0"
+        @vote="onClickVoteBtn(drink)" />
     </div>
   </div>
+
+  <InputInfoDialog v-if="showInputInfoDialog" @done="onDoneVote" />
 </template>
 
 <script setup lang="ts">
 import { ref, Ref, onBeforeMount } from 'vue';
+import { useRouter } from 'vue-router';
 import DrinkItem from '@/components/DrinkItem.vue';
 import Drink from '@/types/drink.type';
+import InputInfoDialog from '@/dialogs/InputInfoDialog.vue';
+
+const router = useRouter();
 
 const drinks: Ref<Drink> = ref([]);
+
+const showInputInfoDialog: Ref<boolean> = ref(false);
+const voteDrink: Ref<Drink | undefined> = ref();
 
 onBeforeMount(() => {
   drinks.value = [
@@ -31,6 +41,16 @@ onBeforeMount(() => {
     { drink_id: 'test_03', name: '막걸리', vote_count: 0, last_update: Date.now(), img: 'https://src.hidoc.co.kr/image/lib/2020/6/30/1593492805222_0.jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
   ];
 });
+
+function onClickVoteBtn(drink: Drink) {
+  voteDrink.value = drink;
+  showInputInfoDialog.value = true;
+}
+
+function onDoneVote() {
+  showInputInfoDialog.value = false;
+  router.push('/complete');
+}
 
 </script>
 
