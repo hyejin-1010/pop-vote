@@ -9,14 +9,15 @@
     </div>
 
     <div class="text-center">
-      <button class="bg-blue-600 rounded-full w-[80%] text-white font-bold jalnan py-4">투표하기</button>
+      <router-link to="/vote" class="block bg-blue-600 rounded-full w-[80%] text-white font-bold py-4 m-auto jalnan">
+        투표하기
+      </router-link>
       <button class="bg-blue-900 rounded-full w-[80%] text-white font-bold jalnan py-4 mt-4">순위보기</button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-
 </script>
 
 <style scoped>

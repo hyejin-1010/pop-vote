@@ -5,6 +5,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/',
     component: () => import('../views/Home.vue'),
   },
+  {
+    path: '/vote',
+    component: () => import('../views/Vote.vue'),
+  },
 ];
 
 export default createRouter({
