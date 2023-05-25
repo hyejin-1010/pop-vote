@@ -8,7 +8,7 @@
       temp image
     </div>
 
-    <div class="text-center">
+    <div class="mb-10 text-center">
       <router-link to="/vote" class="block bg-blue-600 rounded-full w-[80%] text-white font-bold py-4 m-auto jalnan">
         투표하기
       </router-link>

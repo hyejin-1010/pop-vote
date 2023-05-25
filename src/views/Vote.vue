@@ -49,7 +49,7 @@ function onClickVoteBtn(drink: Drink) {
 
 function onDoneVote() {
   showInputInfoDialog.value = false;
-  router.push('/complete');
+  router.push(`/complete/${voteDrink.value.drink_id}`);
 }
 
 </script>
