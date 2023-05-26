@@ -13,7 +13,8 @@
     </div>
   </div>
 
-  <InputInfoDialog v-if="showInputInfoDialog" @done="onDoneVote" />
+  <InputInfoDialog v-if="showInputInfoDialog" 
+    @done="onDoneVote" @close="closeInputInfoDialog" />
 </template>
 
 <script setup lang="ts">
@@ -22,6 +23,7 @@ import { useRouter } from 'vue-router';
 import DrinkItem from '@/components/DrinkItem.vue';
 import Drink from '@/types/drink.type';
 import InputInfoDialog from '@/dialogs/InputInfoDialog.vue';
+import getRanking from '@/utills/getRanking';
 
 const router = useRouter();
 
@@ -31,17 +33,9 @@ const showInputInfoDialog: Ref<boolean> = ref(false);
 const voteDrink: Ref<Drink | undefined> = ref();
 
 onBeforeMount(() => {
-  drinks.value = [
-    { drink_id: 'test_01', name: '소주', vote_count: 0, last_update: Date.now(), img: 'https://src.hidoc.co.kr/image/board/2021/8/26/1629982419746_0.jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_02', name: '맥주', vote_count: 0, last_update: Date.now(), img: 'https://image.dongascience.com/Photo/2016/08/14712498173835[1].jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_03', name: '막걸리', vote_count: 0, last_update: Date.now(), img: 'https://src.hidoc.co.kr/image/lib/2020/6/30/1593492805222_0.jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_01', name: '소주', vote_count: 0, last_update: Date.now(), img: 'https://src.hidoc.co.kr/image/board/2021/8/26/1629982419746_0.jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_02', name: '맥주', vote_count: 0, last_update: Date.now(), img: 'https://image.dongascience.com/Photo/2016/08/14712498173835[1].jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_03', name: '막걸리', vote_count: 0, last_update: Date.now(), img: 'https://src.hidoc.co.kr/image/lib/2020/6/30/1593492805222_0.jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_01', name: '소주', vote_count: 0, last_update: Date.now(), img: 'https://src.hidoc.co.kr/image/board/2021/8/26/1629982419746_0.jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_02', name: '맥주', vote_count: 0, last_update: Date.now(), img: 'https://image.dongascience.com/Photo/2016/08/14712498173835[1].jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_03', name: '막걸리', vote_count: 0, last_update: Date.now(), img: 'https://src.hidoc.co.kr/image/lib/2020/6/30/1593492805222_0.jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-  ];
+  getRanking().then((resp) => {
+    drinks.value = resp.data;
+  });
 });
 
 function onClickVoteBtn(drink: Drink) {
@@ -50,8 +44,12 @@ function onClickVoteBtn(drink: Drink) {
 }
 
 function onDoneVote() {
-  showInputInfoDialog.value = false;
+  closeInputInfoDialog();
   router.push(`/complete/${voteDrink.value.drink_id}`);
+}
+
+function closeInputInfoDialog() {
+  showInputInfoDialog.value = false;
 }
 
 function back() {
