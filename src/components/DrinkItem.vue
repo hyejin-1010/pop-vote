@@ -1,6 +1,6 @@
 <template>
   <div class="shadow-lg w-[80%] m-auto my-6 flex p-4 border border-grey-400 rounded-lg relative">
-    <div class="absolute top-[-10px] left-[-10px] flex flex-col justify-center font-bold text-center text-white bg-blue-600 rounded-full w-9 h-9 shadow-lg">
+    <div v-if="!isVote" class="absolute top-[-10px] left-[-10px] flex flex-col justify-center font-bold text-center text-white bg-blue-600 rounded-full w-9 h-9 shadow-lg">
       <span>{{ drink.rank }}</span>
     </div>
 
