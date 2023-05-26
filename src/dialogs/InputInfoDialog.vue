@@ -5,9 +5,11 @@
     <div class="fixed inset-0 z-10 overflow-y-auto">
       <div class="flex items-end justify-center min-h-full p-4 text-center sm:items-center sm:p-0">
         <div class="relative overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl sm:my-8 sm:w-full sm:max-w-lg">
-          <div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
-            <div class="mt-3 text-xl font-bold text-center sm:ml-4">
-              통계 조사
+          <div class="relative px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
+            <span class="absolute text-xl text-gray-700 cursor-pointer top-5 right-5"
+              @click="emit('close')">X</span>
+            <div class="mt-3 text-center sm:ml-4">
+              <span class="text-xl font-bold ">통계 조사</span>
             </div>
 
             <div class="mt-8">
