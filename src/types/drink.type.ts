@@ -4,4 +4,7 @@ export default interface Drink {
   vote_count: number;
   last_update: Date;
   img: string;
+  alcohol_level: number;
+  vote_count: number;
+  rank?: number;
 }

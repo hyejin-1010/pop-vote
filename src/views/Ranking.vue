@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col max-h-full">
-    <div class="text-6xl font-bold text-center jalnan">
+    <div class="mb-2 text-6xl font-bold text-center jalnan">
       <span class="text-blue-600 cursor-pointer hover:text-blue-800" 
         @click="back">⬅</span>
       술 인기 투표
@@ -24,22 +24,16 @@ const router = useRouter();
 const drinks: Ref<Drink> = ref([]);
 
 onBeforeMount(() => {
-  /*
   axios.get('https://www.moon-rises-in-space.store/Ranking').then((resp) => {
-    console.log('chloe resp : ', resp);
+    drinks.value = resp.data;
+    let rank: number = 0;
+    for (let index = 0; index < drinks.value.length; index++) {
+      if (index === 0 || drinks.value[index - 1].vote_count !== drinks.value[index].vote_count) {
+        rank++;
+      }
+      drinks.value[index].rank = rank;
+    }
   });
-  */
-  drinks.value = [
-    { drink_id: 'test_01', name: '소주', vote_count: 0, last_update: Date.now(), img: 'https://src.hidoc.co.kr/image/board/2021/8/26/1629982419746_0.jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_02', name: '맥주', vote_count: 0, last_update: Date.now(), img: 'https://image.dongascience.com/Photo/2016/08/14712498173835[1].jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_03', name: '막걸리', vote_count: 0, last_update: Date.now(), img: 'https://src.hidoc.co.kr/image/lib/2020/6/30/1593492805222_0.jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_01', name: '소주', vote_count: 0, last_update: Date.now(), img: 'https://src.hidoc.co.kr/image/board/2021/8/26/1629982419746_0.jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_02', name: '맥주', vote_count: 0, last_update: Date.now(), img: 'https://image.dongascience.com/Photo/2016/08/14712498173835[1].jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_03', name: '막걸리', vote_count: 0, last_update: Date.now(), img: 'https://src.hidoc.co.kr/image/lib/2020/6/30/1593492805222_0.jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_01', name: '소주', vote_count: 0, last_update: Date.now(), img: 'https://src.hidoc.co.kr/image/board/2021/8/26/1629982419746_0.jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_02', name: '맥주', vote_count: 0, last_update: Date.now(), img: 'https://image.dongascience.com/Photo/2016/08/14712498173835[1].jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-    { drink_id: 'test_03', name: '막걸리', vote_count: 0, last_update: Date.now(), img: 'https://src.hidoc.co.kr/image/lib/2020/6/30/1593492805222_0.jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' },
-  ];
 });
 
 function back() {
