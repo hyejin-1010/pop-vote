@@ -22,6 +22,7 @@ import { ref, Ref, onBeforeMount } from 'vue';
 import { useRouter } from 'vue-router';
 import DrinkItem from '@/components/DrinkItem.vue';
 import Drink from '@/types/drink.type';
+import Info from '@/types/info.type';
 import InputInfoDialog from '@/dialogs/InputInfoDialog.vue';
 import getRanking from '@/utills/getRanking';
 
@@ -43,8 +44,7 @@ function onClickVoteBtn(drink: Drink) {
   showInputInfoDialog.value = true;
 }
 
-function onDoneVote() {
-  closeInputInfoDialog();
+function onDoneVote(info: Info) {
   router.push(`/complete/${voteDrink.value.drink_id}`);
 }
 

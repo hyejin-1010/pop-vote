@@ -48,23 +48,9 @@
 <script setup lang="ts">
 import { ref, Ref, computed, ComputedRef } from 'vue';
 import InputInfoDialog from '@/dialogs/InputInfoDialog.vue';
+import Gender from '@/types/gender.type';
+import Info from '@/types/info.type';
 
-interface Props {
-}
-
-enum Gender {
-  female,
-  male,
-  etc,
-}
-
-interface Info {
-  age: number;
-  gender: Gender.female,
-  country: string;
-}
-
-const props = defineProps<Props>();
 const emit = defineEmits(['done', 'close']);
 
 const info: Ref<Info> = ref<Info>({} as Info);
@@ -77,7 +63,7 @@ const doneInput: ComputedRef<boolean> = computed(() => {
 });
 
 function onClickDoneBtn() {
-  emit('done');
+  emit('done', info.value);
 }
 </script>
 
