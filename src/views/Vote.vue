@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <InputInfoDialog v-if="showInputInfoDialog" 
+  <InputInfoDialog v-if="isShowInputInfoDialog" 
     @done="onDoneVote" @close="closeInputInfoDialog" />
 </template>
 
@@ -25,12 +25,13 @@ import Drink from '@/types/drink.type';
 import Info from '@/types/info.type';
 import InputInfoDialog from '@/dialogs/InputInfoDialog.vue';
 import getRanking from '@/utills/getRanking';
+import checkVoted from '@/utills/checkVoted';
 
 const router = useRouter();
 
 const drinks: Ref<Drink> = ref([]);
 
-const showInputInfoDialog: Ref<boolean> = ref(false);
+const isShowInputInfoDialog: Ref<boolean> = ref(false);
 const voteDrink: Ref<Drink | undefined> = ref();
 
 onBeforeMount(() => {
@@ -40,16 +41,27 @@ onBeforeMount(() => {
 });
 
 function onClickVoteBtn(drink: Drink) {
-  voteDrink.value = drink;
-  showInputInfoDialog.value = true;
+  checkVoted().then(({ data }) => {
+    const checkVoted: boolean = data == 1;
+    if (checkVoted) {
+      router.to('/alreadyVoted');
+    } else {
+      showInputInfoDialog(drink); 
+    }
+  });
 }
 
 function onDoneVote(info: Info) {
   router.push(`/complete/${voteDrink.value.drink_id}`);
 }
 
+function showInputInfoDialog(drink: Drink) {
+  voteDrink.value = drink;
+  isShowInputInfoDialog.value = true;
+}
+
 function closeInputInfoDialog() {
-  showInputInfoDialog.value = false;
+  isShowInputInfoDialog.value = false;
 }
 
 function back() {
