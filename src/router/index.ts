@@ -17,6 +17,10 @@ const routes: Array<RouteRecordRaw> = [
     path: '/ranking',
     component: () => import('../views/Ranking.vue'),
   },
+  {
+    path: '/alreadyVoted',
+    component: () => import('../views/AlreadyVoted.vue'),
+  },
 ];
 
 export default createRouter({
