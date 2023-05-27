@@ -34,7 +34,7 @@ const buttonStyle: string = 'block text-center w-full py-3 text-white rounded-fu
 
 onBeforeMount(() => { 
   if (!route.params.voteId) { return; }
-  getDrink(route.params.voteId).then(({ data }) => {
+  getDrink(route.params.voteId.toString()).then(({ data }) => {
     drink.value = data;
   });
 });

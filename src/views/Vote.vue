@@ -19,17 +19,18 @@
 
 <script setup lang="ts">
 import { ref, Ref, onBeforeMount } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, Router } from 'vue-router';
 import DrinkItem from '@/components/DrinkItem.vue';
 import Drink from '@/types/drink.type';
 import Info from '@/types/info.type';
 import InputInfoDialog from '@/dialogs/InputInfoDialog.vue';
 import getRanking from '@/utills/getRanking';
 import checkVoted from '@/utills/checkVoted';
+import vote from '@/utills/vote';
 
-const router = useRouter();
+const router: Router = useRouter();
 
-const drinks: Ref<Drink> = ref([]);
+const drinks: Ref<Drink[]> = ref([]);
 
 const isShowInputInfoDialog: Ref<boolean> = ref(false);
 const voteDrink: Ref<Drink | undefined> = ref();
@@ -41,10 +42,11 @@ onBeforeMount(() => {
 });
 
 function onClickVoteBtn(drink: Drink) {
-  checkVoted().then(({ data }) => {
+  checkVoted().then((resp) => {
+    const { data } = resp;
     const checkVoted: boolean = data == 1;
     if (checkVoted) {
-      router.to('/alreadyVoted');
+      router.push('/alreadyVoted');
     } else {
       showInputInfoDialog(drink); 
     }
@@ -52,7 +54,11 @@ function onClickVoteBtn(drink: Drink) {
 }
 
 function onDoneVote(info: Info) {
-  router.push(`/complete/${voteDrink.value.drink_id}`);
+  if (!voteDrink.value) { return; }
+  vote(info, voteDrink.value.drink_id).then((resp) => {
+    closeInputInfoDialog();
+    router.push(`/complete/${voteDrink.value.drink_id}`);
+  });
 }
 
 function showInputInfoDialog(drink: Drink) {
