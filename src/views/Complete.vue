@@ -22,12 +22,22 @@
 </template>
 
 <script setup lang="ts">
-import { ref, Ref } from 'vue';
+import { ref, Ref, onBeforeMount } from 'vue';
+import { useRoute } from 'vue-router';
 import Drink from '@/types/drink.type';
+import getDrink from '@/utills/getDrink';
+
+const route = useRoute();
 
 const drink: Ref<Drink | undefined> = ref();
-
 const buttonStyle: string = 'block text-center w-full py-3 text-white rounded-full';
+
+onBeforeMount(() => { 
+  if (!route.params.voteId) { return; }
+  getDrink(route.params.voteId).then(({ data }) => {
+    drink.value = data;
+  });
+});
 
 </script>
 
