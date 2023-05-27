@@ -18,10 +18,11 @@ import { onBeforeMount, ref, Ref } from 'vue';
 import { useRouter } from 'vue-router';
 import DrinkItem from '@/components/DrinkItem.vue';
 import getRankings from '@/utills/getRanking';
+import Drink from '@/types/drink.type';
 
 const router = useRouter();
 
-const drinks: Ref<Drink> = ref([]);
+const drinks: Ref<Drink[]> = ref([]);
 
 onBeforeMount(() => {
   getRankings().then((resp) => {
@@ -32,12 +33,13 @@ onBeforeMount(() => {
 
 function initDrinksRank() {
   let rank: number = 0;
-  for (let index = 0; index < drinks.value.length; index++) {
-    if (index === 0 || drinks.value[index - 1].vote_count !== drinks.value[index].vote_count) {
+  drinks.value = drinks.value.map((drink, index) => {
+    if (index === 0 || drinks.value[index - 1].vote_count !== drink.vote_count) {
       rank++;
     }
-    drinks.value[index].rank = rank;
-  }
+    drink.rank = rank;
+    return drink;
+  });
 }
 
 function back() {

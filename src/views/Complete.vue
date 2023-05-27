@@ -5,7 +5,7 @@
     </div>
 
     <div class="flex flex-col justify-center flex-1">
-      <div class="border border-gray-300 rounded-lg w-[80%] m-auto my-6 text-center py-6 shadow-lg">
+      <div v-if="drink" class="border border-gray-300 rounded-lg w-[80%] m-auto my-6 text-center py-6 shadow-lg">
         <img :src="drink.img" class="w-[80%] mx-auto my-4 rounded" />
         <div class="my-4 text-3xl">{{ drink.name }}</div>
         <div class="text-blue-600">투표 완료</div>
@@ -25,7 +25,7 @@
 import { ref, Ref } from 'vue';
 import Drink from '@/types/drink.type';
 
-const drink: Ref<Drink> = ref({ drink_id: 'test_01', name: '소주', vote_count: 0, last_update: Date.now(), img: 'https://src.hidoc.co.kr/image/board/2021/8/26/1629982419746_0.jpg', description: '술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명 술에 대한 설명' });
+const drink: Ref<Drink | undefined> = ref();
 
 const buttonStyle: string = 'block text-center w-full py-3 text-white rounded-full';
 

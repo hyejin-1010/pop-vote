@@ -47,7 +47,6 @@
 
 <script setup lang="ts">
 import { ref, Ref, computed, ComputedRef } from 'vue';
-import InputInfoDialog from '@/dialogs/InputInfoDialog.vue';
 import Gender from '@/types/gender.type';
 import Info from '@/types/info.type';
 

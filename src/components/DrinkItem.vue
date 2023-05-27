@@ -40,7 +40,7 @@ interface Props {
   isVote: boolean;
 }
 
-const props = defineProps<Props>();
+defineProps<Props>();
 const emit = defineEmits(['vote']);
 </script>
 

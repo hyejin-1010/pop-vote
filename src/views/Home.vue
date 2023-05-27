@@ -9,10 +9,10 @@
     </div>
 
     <div class="mb-10 text-center">
-      <router-link to="/vote" class="block bg-blue-600 rounded-full w-[80%] text-white font-bold py-4 m-auto jalnan">
+      <router-link to="/vote" class="block bg-blue-600 rounded-full w-[80%] text-white font-bold py-4 m-auto hover:bg-blue-800 jalnan">
         투표하기
       </router-link>
-      <router-link to="/ranking" class="block m-auto bg-blue-900 rounded-full w-[80%] text-white font-bold jalnan py-4 mt-4">순위보기</router-link>
+      <router-link to="/ranking" class="block m-auto bg-blue-900 rounded-full w-[80%] text-white font-bold hover:bg-blue-700 jalnan py-4 mt-4">순위보기</router-link>
     </div>
   </div>
 </template>
