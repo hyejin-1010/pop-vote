@@ -55,9 +55,9 @@ function onClickVoteBtn(drink: Drink) {
 
 function onDoneVote(info: Info) {
   if (!voteDrink.value) { return; }
-  vote(info, voteDrink.value.drink_id).then((resp) => {
+  vote(info, voteDrink.value.drink_id).then((_) => {
     closeInputInfoDialog();
-    router.push(`/complete/${voteDrink.value.drink_id}`);
+    router.push(`/complete/${voteDrink.value?.drink_id}`);
   });
 }
 
