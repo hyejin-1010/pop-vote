@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col h-full">
     <div class="text-6xl font-bold text-center jalnan">
-      술 인기 투표
+      칵테일🍸인기 투표
     </div>
 
     <div class="w-[80%] h-60 bg-gray-300 m-auto my-14 text-center flex flex-col justify-center flex-1">
-      temp image
+      <img src="https://pop-vote-bucket.s3.ap-northeast-2.amazonaws.com/pop-vote-maindrinkimg.jpg">
     </div>
 
     <div class="mb-10 text-center">

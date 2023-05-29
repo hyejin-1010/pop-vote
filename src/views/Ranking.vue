@@ -3,7 +3,7 @@
     <div class="mb-2 text-6xl font-bold text-center jalnan">
       <span class="text-blue-600 cursor-pointer hover:text-blue-800" 
         @click="back">⬅</span>
-      술 인기 투표
+      칵테일🍸인기 투표
     </div>
 
     <div class="flex-1 h-full overflow-y-auto">

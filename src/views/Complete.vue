@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col h-full jalnan">
     <div class="text-6xl font-bold text-center">
-      술 인기 투표
+      칵테일🍸인기 투표
     </div>
 
     <div class="flex flex-col justify-center flex-1">
